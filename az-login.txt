@@ -1,0 +1,18 @@
+
+az login
+az account list-locations -o table
+az account set --subscription="fe7276bf-b23b-413e-8279-be285e56c0e9"
+az account show
+
+    backend "azurerm" {
+        resource_group_name  = "blobstorage-rg"
+        storage_account_name = "dstoragestatefile"
+        container_name       = "tfstate"
+        key                  = "terraform.tfstate"
+    }
+
+    terraform init
+    terraform validate
+    terraform plan
+    terraform apply -auto-approve
+    terraform destroy
